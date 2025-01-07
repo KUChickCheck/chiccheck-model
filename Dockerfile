@@ -7,8 +7,14 @@ WORKDIR /app
 # Copy your Flask application to the container
 COPY . /app
 
-# Install any required Python dependencies
-RUN pip install -r requirements.txt
+# Upgrade pip and setuptools
+RUN pip install --upgrade pip setuptools
+
+# Optionally, uninstall the problematic blinker version
+RUN pip uninstall -y blinker
+
+# Install any required Python dependencies, ignoring previously installed packages
+RUN pip install --ignore-installed --no-cache-dir -r requirements.txt
 
 # Expose the Flask app port
 EXPOSE 5000
