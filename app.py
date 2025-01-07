@@ -29,7 +29,7 @@ def preprocess_image(image_path, target_size=(150, 150)):
     return np.expand_dims(img_array, axis=0)  # Add batch dimension
 
 # Add `/predict` endpoint
-@app.route('/predict', methods=['POST'])
+@app.route('/api/predict', methods=['POST'])
 def predict():
     if 'image' not in request.files:
         return jsonify({'error': 'No image uploaded'}), 400
