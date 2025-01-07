@@ -51,7 +51,7 @@ def predict():
     })
 
 # Add `/train` endpoint
-@app.route('/train', methods=['POST'])
+@app.route('/api/train', methods=['POST'])
 def train():
     if 'image' not in request.files or 'label' not in request.form:
         return jsonify({'error': 'Image and label are required'}), 400
@@ -97,7 +97,7 @@ def fine_tune_model():
     model.save("model_1.h5")
 
 # Add `/retrain` endpoint
-@app.route('/retrain', methods=['POST'])
+@app.route('/api/retrain', methods=['POST'])
 def retrain():
     try:
         fine_tune_model()
